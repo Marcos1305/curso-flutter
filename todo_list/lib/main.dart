@@ -138,7 +138,7 @@ class _HomeState extends State<Home> {
       key: Key(DateTime.now().millisecondsSinceEpoch.toString()),
       background: Container(
           color: Colors.red,
-          child: Align(
+          child: Align(HE
             alignment: Alignment(-0.9, 0),
             child: Icon(
               Icons.delete,
