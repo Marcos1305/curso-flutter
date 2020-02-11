@@ -11,6 +11,9 @@ class UserModel extends Model {
 
   bool isLoading = false;
 
+  static UserModel of(BuildContext context) =>
+      ScopedModel.of<UserModel>(context);
+
   @override
   void addListener(VoidCallback listener) {
     super.addListener(listener);
@@ -23,6 +26,9 @@ class UserModel extends Model {
       @required String pass,
       @required VoidCallback onSuccess,
       @required VoidCallback onFailure}) {
+    this.isLoading = false;
+    notifyListeners();
+
     _auth
         .createUserWithEmailAndPassword(
             email: userData['email'], password: pass)
@@ -44,6 +50,9 @@ class UserModel extends Model {
       @required String pass,
       @required VoidCallback onSuccess,
       @required VoidCallback onFailure}) async {
+    this.isLoading = false;
+    notifyListeners();
+
     _auth
         .signInWithEmailAndPassword(email: email, password: pass)
         .then((user) async {
