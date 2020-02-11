@@ -123,7 +123,6 @@ class LoginScreen extends StatelessWidget {
     print("teste");
     _scaffoldKey.currentState.showSnackBar(SnackBar(
         content: Text("Usuário logado com sucesso!"),
-        backgroundColor: Theme.of(context).primaryColor,
         duration: Duration(seconds: 2)));
 
     Navigator.of(context).pop();
