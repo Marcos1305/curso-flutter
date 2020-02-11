@@ -61,7 +61,9 @@ class UserModel extends Model {
     });
   }
 
-  void recoverPass() {}
+  void recoverPass(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
+  }
 
   Future _saveUserData(Map<String, dynamic> userData) async {
     this.userData = userData;
