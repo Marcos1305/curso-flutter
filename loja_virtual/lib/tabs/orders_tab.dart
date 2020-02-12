@@ -21,9 +21,13 @@ class OrdersTab extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           }
           return ListView(
-              children: snapshot.data.documents.map((doc) {
-            return OrderTile(doc.documentID);
-          }).toList());
+              children: snapshot.data.documents
+                  .map((doc) {
+                    return OrderTile(doc.documentID);
+                  })
+                  .toList()
+                  .reversed
+                  .toList());
         },
       );
     } else {
