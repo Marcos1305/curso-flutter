@@ -9,10 +9,17 @@ class CartModel extends Model {
   List<CartProduct> products = [];
   bool isLoading = false;
 
+  String coupunCode;
+  int discountPercentage = 0;
+
   CartModel(this.user) {
     if (user.isLoggedIn()) {
       _loadCartItem();
     }
+  }
+
+  void updatePrices() {
+    notifyListeners();
   }
 
   static CartModel of(BuildContext context) =>
@@ -77,7 +84,32 @@ class CartModel extends Model {
         .collection("cart")
         .getDocuments();
     products = query.documents.map((doc) {
-      CartProduct.fromDocument(doc);
+      return CartProduct.fromDocument(doc);
     }).toList();
+  }
+
+  void setCoupon(String couponCode, int discountPercentage) {
+    this.coupunCode = coupunCode;
+    this.discountPercentage = discountPercentage;
+  }
+
+  double getProductsPrice() {
+    double price = 0;
+
+    for (CartProduct c in products) {
+      if (c.productData != null) {
+        price += c.quantity * c.productData.price;
+      }
+    }
+
+    return price;
+  }
+
+  double getDiscount() {
+    return getProductsPrice() * discountPercentage / 100;
+  }
+
+  double getShipPrice() {
+    return 9.99;
   }
 }

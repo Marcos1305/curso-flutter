@@ -11,6 +11,22 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _onSuccess() {
+      print("teste");
+      _scaffoldKey.currentState.showSnackBar(SnackBar(
+          content: Text("Usuário logado com sucesso!"),
+          duration: Duration(seconds: 2)));
+
+      Navigator.of(context).pop();
+    }
+
+    void _onFail() {
+      _scaffoldKey.currentState.showSnackBar(SnackBar(
+          content: Text("Erro ao realizar login."),
+          backgroundColor: Colors.redAccent,
+          duration: Duration(seconds: 2)));
+    }
+
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -104,8 +120,8 @@ class LoginScreen extends StatelessWidget {
                       model.signIn(
                           email: _emailController.text,
                           pass: _passController.text,
-                          onSuccess: () => _onSuccess(context),
-                          onFailure: () => _onFail(context));
+                          onSuccess: () => _onSuccess(),
+                          onFailure: () => _onFail());
                     }
                   },
                   textColor: Colors.white,
@@ -117,21 +133,5 @@ class LoginScreen extends StatelessWidget {
         );
       }),
     );
-  }
-
-  void _onSuccess(BuildContext context) {
-    print("teste");
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-        content: Text("Usuário logado com sucesso!"),
-        duration: Duration(seconds: 2)));
-
-    Navigator.of(context).pop();
-  }
-
-  void _onFail(BuildContext context) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-        content: Text("Erro ao realizar login."),
-        backgroundColor: Colors.redAccent,
-        duration: Duration(seconds: 2)));
   }
 }
