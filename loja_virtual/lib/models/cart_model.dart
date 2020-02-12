@@ -26,7 +26,7 @@ class CartModel extends Model {
       ScopedModel.of<CartModel>(context);
 
   void addCartItem(CartProduct cartProduct) {
-    // products.add(cartProduct);
+    products.add(cartProduct);
     Firestore.instance
         .collection("users")
         .document(user.firebaseUser.uid)
