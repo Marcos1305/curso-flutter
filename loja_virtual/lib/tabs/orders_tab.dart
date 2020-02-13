@@ -17,6 +17,7 @@ class OrdersTab extends StatelessWidget {
             .collection('orders')
             .getDocuments(),
         builder: (context, snapshot) {
+          print(snapshot.data?.documents);
           if (!snapshot.hasData) {
             return Center(child: CircularProgressIndicator());
           }
