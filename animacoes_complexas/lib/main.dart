@@ -1,3 +1,4 @@
+import 'package:animacoes_complexas/screens/home/home_screen.dart';
 import 'package:animacoes_complexas/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
